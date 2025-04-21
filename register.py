@@ -7,6 +7,7 @@ import string
 import json
 import sys
 import asyncio
+
 hitam = Fore.LIGHTBLACK_EX
 reset = Style.RESET_ALL
 
@@ -180,6 +181,12 @@ async def register(referral_code="", proxy=None):
     res = await http(ses=ses, url=sendotp_url, data=sendotp_data)
     if res is None:
         return "bad_proxy"
+    success = res.json().get("success")
+    if isinstance(success, bool):
+        if not success:
+            log("failed send email otp !")
+            return False
+    log("success send email otp !")
     code, mails = await mail.get_mails()
     code, mail_text = await mail.get_text_mail(mail_id=mails[0]["id"])
     otp = "".join(mail_text.split("Code\n\n")[1].split("\n\n")[0].split(" "))
@@ -195,7 +202,7 @@ async def register(referral_code="", proxy=None):
         return False
     ses.headers.update({"x-access-token": token})
     log("success login !")
-    open("accounts.txt","a+").write(f"{email}|{mail.password}\n")
+    open("accounts.txt", "a+").write(f"{email}|{mail.password}\n")
     bind_invitation_url = f"https://ope.edgex.one/api/front/login/bindInvitationCode?invitationCode={referral_code}"
     res = await http(ses=ses, url=bind_invitation_url)
     if res is None:
@@ -263,7 +270,9 @@ async def main():
             p += 1
             n += 1
             continue
-        p += 1
+        if not result:
+            p += 1
+            continue
         if n == int(referrals):
             sys.exit()
 
