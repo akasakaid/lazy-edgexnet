@@ -30,9 +30,9 @@ Compatible proxy providers:
 
 ### Configuration
 
-* Edit referral_code.txt  
+* Edit `referral_code.txt  ``
   Enter your referral code in this file
-* Edit proxies.txt  
+* Edit `proxies.txt`  
   Add your proxies to this file if you want to use them. See [Proxy Providers](#proxy-providers) for recommended providers.
 
   Required proxy formats:
@@ -72,5 +72,6 @@ python3 register.py
 
 # Enter the number of referrals/accounts you want to create!
 ```
+The registered account is saved in the file `accounts.txt`.
 
 ## Thank You :3

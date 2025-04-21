@@ -31,9 +31,9 @@ Provider proxy yang kompatibel:
 
 ### Konfigurasi
 
-* Edit file referral_code.txt
+* Edit file `referral_code.txt`
 	Isi kode referral anda di file ini
-* Edit file proxies.txt
+* Edit file `proxies.txt`
 	Anda bisa menambahkan proxy yang anda miliki difile ini jika ingin menggunakan proxy, Lihat [Provider Proxy](#provider-proxy) untuk rekomentasi provider proxy.
 
 	Format yang harus digunakan untuk proxy sebagai berikut
@@ -57,3 +57,25 @@ Provider proxy yang kompatibel:
 	Contoh
 	http://192.168.1.1:8000
 	```
+
+### Pendaftaran otomatis
+
+```
+# klone repository
+git clone https://github.com/akasakaid/lazy-edgexnet
+
+# masuk ke folder 
+cd lazy-edgexnet
+
+# install library yang dibutuhkan
+python3 -m pip install -r requirements.txt
+
+# jalankan script register.py 
+python3 register.py
+
+# masukkan jumlah referral / akun yang ingin anda buat !
+```
+
+Akun hasil pendaftaran disimpan di file `accounts.txt`
+
+## Terima kasih :3
